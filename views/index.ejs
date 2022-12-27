@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Gủi lời iu thương tới Na</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=WeakRef,BigInt"></script>
+<script src="https://cdn.jsdelivr.net/npm/superagent"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+  <div class="container">
+    <div style="margin: 50px;"></div>
+    <div class="card text-left">
+      <div class="card-body">
+        <h4 class="card-title">send2na</h4>
+        <p class="card-text">Hi everyone, Na đây <br>
+          2022 là một năm rất thú vị của Na, Na được gặp thêm rất nhiều những người bạn mới. 2022 cũng đánh dấu rất
+          nhiều sự thay đổi bên trong Na. Chiếc web bé bé xinh xinh này được lập ra để mọi người có thể gửi được cho Na
+          những gì mà mọi người xuy nghĩ về Na trong thời gian qua. Mong mỗi bạn có lỡ đi ngang qua chiếc web cute này
+          có thể để lại những điều mà bạn muốn nhắn gửi cho Na trong năm qua. Bạn có thể nhắn bất cứ điều gì cho Na
+          không quan trọng chủ đề, kể cả những chuyện xàm nhất. <br>
+          <small>12:51 27 Dec 2022</small>
+        </p>
+      </div>
+    </div>
+
+    <div style="margin: 20px;"></div>
+    <div class="card text-left">
+      <div class="card-body">
+        <h4 class="card-title">Phần này để gửi nè</h4>
+        <label for="">Nhập nội dung tin nhắn</label>
+        <textarea type="text" class="form-control" id="contentbox"
+          placeholder="Nhập nội dung tin nhắn ở đây nè" rows="5"></textarea>
+          <small>Đối đa 4096 kí tư</small>
+        <div style="margin: 10px;"></div>
+        <label for="">Nhập tên người gửi</label>
+        <input type="text" class="form-control" id="senderbox" placeholder="Nhập tên người gửi">
+        <small>Tối đa 200 kí tự</small>
+        <div style="margin: 5px;"></div>
+        <a name="" id="btn-send" class="btn btn-primary" href="#" role="button">Gửi</a>
+      </div>
+    </div>
+    <small>Powered by namanhisere</small>
+
+  </div>
+
+
+
+</body>
+<script>
+  let randomColor = ["#FDDFDF", "#FCF7DE", "#DEFDE0", "#DEF3FD", "#F0DEFD", "#FADAE0", "#FFFDC2", "#99DECF", "#AEC3EF", "#E2DBFF"]
+
+  document.body.style.background = randomColor[Math.floor(Math.random() * randomColor.length)];
+  let hookURL = 
+  document.getElementById("btn-send").addEventListener("click", async function (e) {
+    e.preventDefault()
+    let content = document.getElementById("contentbox").value
+  let sender = document.getElementById("senderbox").value
+    console.log(sender)
+
+    let returnRequest = await superagent
+      .post(hookURL[Math.floor(Math.random() * hookURL.length)])
+      .send({
+        content: null,
+        username:"send2na",
+        avatar_url:"https://i.pinimg.com/736x/77/b7/f3/77b7f33608b32eb6f0f1cce335379df4.jpg",
+        embeds: [
+          {
+            title: "Tin nhắn đến từ: "+sender,
+
+            description: content
+          }
+        ],
+      }).end((err, res) => {
+        if(err ) return alert("Xin lỗi nhưng tin nhắn của bạn không thể được gửi đi, hãy thử gửi lại nha")
+
+        alert("Xin nhắn của bạn đã được gửi đi, cảm ơn bạn rất nhiều")
+  });
+
+      
+
+  })
+
+
+
+
+
+
+
+</script>
+
+</html>
